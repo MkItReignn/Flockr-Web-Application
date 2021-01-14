@@ -20,6 +20,10 @@ def users_all(token):
     }
 
 
+def admin_userpermission_change(token, u_id, permission_id):
+    pass
+
+
 def search(token, query_str):
     return {
         'messages': [{

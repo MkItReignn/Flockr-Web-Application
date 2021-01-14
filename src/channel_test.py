@@ -184,11 +184,11 @@ def test_channel_messages_input_error():
 
     # input error when channel ID not a valid channel
     with pytest.raises(InputError):
-        messages = channel_messages(authorised_user['token'], invalid_channel_id, 0)
+        channel_messages(authorised_user['token'], invalid_channel_id, 0)
 
     # input error when channel_id is not of the same data type as expected (integer)
     with pytest.raises(InputError):
-        messages = channel_messages(authorised_user['token'], "string_input", 0)
+        channel_messages(authorised_user['token'], "string_input", 0)
     
     clear()
 
@@ -202,7 +202,7 @@ def test_channel_messages_access_error():
     # Access error when user is not a member of channel with channel_id
     with pytest.raises(AccessError):
         new_user = auth_register("newEmail@gmail.com", "new_password", "New", "Last")
-        messages = channel_messages(new_user['token'], channel['channel_id'], 0)
+        channel_messages(new_user['token'], channel['channel_id'], 0)
 
     clear()
 
@@ -273,7 +273,7 @@ def test_channel_leave_access_error():
 def test_channel_join_input_error():
     clear()
 
-    authorised_user = auth_register("validEmail@gmail.com", "valid_password", "First", "Last")
+    auth_register("validEmail@gmail.com", "valid_password", "First", "Last")
     auth_login("validEmail@gmail.com", "valid_password")
 
     #####################################################################################
@@ -305,7 +305,7 @@ def test_channel_join_normal():
     authorised_user = auth_register("validEmail@gmail.com", "valid_password", "First", "Last")
     auth_login("validEmail@gmail.com", "valid_password")
     public_channel = channels_create(authorised_user['token'], "public_new_channel", True)
-    private_channel = channels_create(authorised_user['token'], "private_new_channel", False)
+    channels_create(authorised_user['token'], "private_new_channel", False)
 
     #####################################################################################
     # test joining public channel
@@ -390,7 +390,7 @@ def test_channel_removeowner_input_error():
     clear()
 
     authorised_user = auth_register("validEmail@gmail.com", "valid_password", "First", "Last")
-    authorised_user2 = auth_register("validEmail2@gmail.com", "valid_password", "First", "Last")
+    auth_register("validEmail2@gmail.com", "valid_password", "First", "Last")
     auth_login("validEmail@gmail.com", "valid_password")
     channel = channels_create(authorised_user['token'], "new_channel", True)
 
@@ -409,7 +409,7 @@ def test_channel_removeowner_acces_error():
     clear()
 
     authorised_user = auth_register("validEmail@gmail.com", "valid_password", "First", "Last")
-    authorised_user2 = auth_register("validEmail2@gmail.com", "valid_password", "First", "Last")
+    auth_register("validEmail2@gmail.com", "valid_password", "First", "Last")
     auth_login("validEmail@gmail.com", "valid_password")
     channel = channels_create(authorised_user['token'], "new_channel", True)
 
@@ -424,7 +424,7 @@ def test_channel_removeowner_normal():
     clear()
 
     authorised_user = auth_register("validEmail@gmail.com", "valid_password", "First", "Last")
-    authorised_user2 = auth_register("validEmail2@gmail.com", "valid_password", "First", "Last")
+    auth_register("validEmail2@gmail.com", "valid_password", "First", "Last")
     auth_login("validEmail@gmail.com", "valid_password")
     channel = channels_create(authorised_user['token'], "new_channel", True)
 
