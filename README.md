@@ -18,11 +18,11 @@ This is a web application using Flask, which facilitates team-based communicatio
 
 ## How to start it
 
-1. ```python3 src/server.py``` begins the backend servers
+1. Start the backend server by ```python3 src/server.py```
 
 2. Copy the back end port
 
-3. ```./project-frontend```
+3. Start the frontend server by ```./project-frontend```
 
 4. ```python3 frontend.py [BACKEND PORT]```
 
